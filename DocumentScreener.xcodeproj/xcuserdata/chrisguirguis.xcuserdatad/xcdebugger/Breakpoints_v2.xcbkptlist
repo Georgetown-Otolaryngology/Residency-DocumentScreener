@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "6675931E-E889-4FCE-9CCF-43BD0B6A8595"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "071F6039-5759-4227-8422-89C3EFEBF538"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocumentScreener/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "readPDF(at:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "78F7B1F5-CCDB-48D9-9FFD-A307B6985B92"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocumentScreener/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "389"
+            endingLineNumber = "389"
+            landmarkName = "fetchModels()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "78F7B1F5-CCDB-48D9-9FFD-A307B6985B92 - c21de1c4815d2fa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "78F7B1F5-CCDB-48D9-9FFD-A307B6985B92 - 853bbfb877a46ba4"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "696">
+               </Location>
+               <Location
+                  uuid = "78F7B1F5-CCDB-48D9-9FFD-A307B6985B92 - 51de74d455b31fb2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "40">
+               </Location>
+               <Location
+                  uuid = "78F7B1F5-CCDB-48D9-9FFD-A307B6985B92 - c21de1c4815d2fa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "136">
+               </Location>
+               <Location
+                  uuid = "78F7B1F5-CCDB-48D9-9FFD-A307B6985B92 - 619308c5566e4da1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "255"
+                  endingLineNumber = "255"
+                  offsetFromSymbolStart = "92">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "86240D92-5A40-4C24-B4B0-5C05F1701ADF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocumentScreener/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "391"
+            endingLineNumber = "391"
+            landmarkName = "fetchModels()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "86240D92-5A40-4C24-B4B0-5C05F1701ADF - c21de1c4815d3709"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "844">
+               </Location>
+               <Location
+                  uuid = "86240D92-5A40-4C24-B4B0-5C05F1701ADF - 619308c5566e550a"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "220">
+               </Location>
+               <Location
+                  uuid = "86240D92-5A40-4C24-B4B0-5C05F1701ADF - c21de1c4815d3709"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "86240D92-5A40-4C24-B4B0-5C05F1701ADF - 52cb2a202901bfb5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DocumentScreener.ModelListResponse.ModelObject) -&gt; Swift.String in DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "312"
+                  endingLineNumber = "312"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E4A39DB6-559A-4ECA-9028-A134AAF8565B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocumentScreener/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "390"
+            endingLineNumber = "390"
+            landmarkName = "fetchModels()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "E4A39DB6-559A-4ECA-9028-A134AAF8565B - c21de1c4815d36ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "332">
+               </Location>
+               <Location
+                  uuid = "E4A39DB6-559A-4ECA-9028-A134AAF8565B - 52cb2a202901be56"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (DocumentScreener.ModelListResponse.ModelObject) -&gt; Swift.String in DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "32">
+               </Location>
+               <Location
+                  uuid = "E4A39DB6-559A-4ECA-9028-A134AAF8565B - c21de1c4815d36ea"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.fetchModels() async throws -&gt; Swift.Array&lt;Swift.String&gt;"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "311"
+                  endingLineNumber = "311"
+                  offsetFromSymbolStart = "216">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "FBBF3BED-90B1-4EFD-87DF-F2733CBCB22A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocumentScreener/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "410"
+            endingLineNumber = "410"
+            landmarkName = "summarizeDocument(_:model:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2A28EBCB-6634-4A44-96EF-C9A9C91CC634"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "DocumentScreener/ContentView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "414"
+            endingLineNumber = "414"
+            landmarkName = "summarizeDocument(_:model:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2A28EBCB-6634-4A44-96EF-C9A9C91CC634 - 5f13fccf244c30aa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.summarizeDocument(_: Swift.String, model: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "365"
+                  endingLineNumber = "365"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "2A28EBCB-6634-4A44-96EF-C9A9C91CC634 - 5f13fccf244c4df0"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.summarizeDocument(_: Swift.String, model: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "387"
+                  endingLineNumber = "387"
+                  offsetFromSymbolStart = "460">
+               </Location>
+               <Location
+                  uuid = "2A28EBCB-6634-4A44-96EF-C9A9C91CC634 - 5f13fccf244c4d74"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for DocumentScreener.APIService.summarizeDocument(_: Swift.String, model: Swift.String) async throws -&gt; Swift.String"
+                  moduleName = "DocumentScreener"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/chrisguirguis/Documents/GitHub/DocumentScreener/DocumentScreener/ContentView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "383"
+                  endingLineNumber = "383"
+                  offsetFromSymbolStart = "460">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
