@@ -8,44 +8,77 @@
 import SwiftUI
 import PDFKit
 
+extension PDFDocument {
+    var attributedContent: [NSAttributedString] {
+        let pageCount = self.pageCount
+        var documentContent = [NSAttributedString]()
+        
+        for i in 0 ..< pageCount {
+            guard let page = self.page(at: i) else { continue }
+            guard let pageContent = page.attributedString else { continue }
+            documentContent.append(pageContent)
+        }
+        return documentContent
+    }
+}
 class PDFHandler{
     static func readPDF(at url: URL) -> DocumentObject? {
         let pdfDocument = PDFDocument(url: url)
         return .init(filename: url.lastPathComponent,
                      fullURL: url,
                      textContent: pdfDocument?.string,
+                     attributedContent: pdfDocument?.attributedContent ?? [],
                      creationDate: pdfDocument?.documentAttributes?[PDFDocumentAttribute.creationDateAttribute] as? Date,
                      modificationDate: pdfDocument?.documentAttributes?[PDFDocumentAttribute.modificationDateAttribute] as? Date)
         
     }
 }
 
-struct DocumentObject: Codable, Hashable {
+struct DocumentObject: Hashable {
+    enum CodingKeys: CodingKey {
+        case filename
+        case fullURL
+        case textContent
+//        case attributedContent
+        case creationDate
+        case modificationDate
+    }
     var filename: String?
     var fullURL: URL
     var textContent: String?
+    var attributedContent: [NSAttributedString]
     var creationDate: Date?
     var modificationDate: Date?
     
-    func createSummaryFile(summary: String) {
+    func createSummaryFile(startTime: Date, summary: String) {
         do {
-        try FileManager().createDirectory(at: fullURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
-        let summaryFileName = fullURL.deletingPathExtension().lastPathComponent + "_summarized.txt"
-        let summarizedPDFURL = fullURL.deletingLastPathComponent().appendingPathComponent(summaryFileName)
+            try FileManager().createDirectory(at: fullURL.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
             
+            let timestamp = startTime.formatted(.dateTime.year().month().day().hour().minute().second())
+            let summaryFolderName = "summary-\(timestamp)"
+            let summaryFileName = fullURL.deletingPathExtension().lastPathComponent + "_summarized.txt"
+            
+            let fileManager = FileManager.default
+            let folderPath = fullURL.deletingLastPathComponent().appendingPathComponent(summaryFolderName)
+            
+            
+            try fileManager.createDirectory(at: folderPath, withIntermediateDirectories: true, attributes: nil)
+            
+            let summarizedPDFURL = folderPath.appendingPathComponent(summaryFileName)
             
             try summary.write(to: summarizedPDFURL, atomically: true, encoding: .utf8)
+            
             print("File successfully created")
         } catch {
-            print("Failed to write summarized PDF: \(error)")
+            print("Failed to create directory or write summarized PDF: \(error)")
         }
     }
 }
 
-struct ProcessedDocument: Codable {
+struct ProcessedDocument {
     var rawObject: DocumentObject
     var summary: String?
-    var isProcessing: Bool = false
+    var componentsCompletedProcessed: [Int: Bool]? = nil
     var summaryGenerated: Bool { summary != nil }
 }
 
@@ -132,7 +165,7 @@ struct ContentView: View {
                         ForEach(viewModel.sortedFiles, id: \.0) {file in
                             NavigationLink(value: Screens.documents(documentID: file.0)) {
                                 HStack {
-                                    if file.1.isProcessing {
+                                    if file.1.componentsCompletedProcessed != nil {
                                         ProgressView()
                                             .scaleEffect(0.3)
                                     } else {
@@ -166,6 +199,9 @@ struct AdvancedSettingsView: View {
     
     var body: some View {
         VStack {
+            Toggle(isOn: $apiService.showPromptInSummary) {
+                Text("Show Prompt In Summary")
+            }.frame(maxWidth: .infinity, alignment: .leading)
             Grid(alignment: .topLeading){
                 GridRow {
                     Text("API Key")
@@ -178,6 +214,11 @@ struct AdvancedSettingsView: View {
                 GridRow {
                     Text("Asst. Prompt")
                     TextField("Assistant Prompt", text: $apiService.assistantPrompt, axis: .vertical)
+                        .lineLimit(3, reservesSpace: true)
+                }
+                GridRow {
+                    Text("Keyphrases")
+                    TextField("Phrases", text: $apiService.parsingKeyphrases, axis: .vertical)
                         .lineLimit(3, reservesSpace: true)
                 }
                 GridRow {
@@ -255,15 +296,30 @@ struct HomeView: View {
                     })
                     if !viewModel.fileContent.isEmpty {
                         Button {
+                            let startTime = Date()
                             for objectPair in viewModel.fileContent {
-                                viewModel.fileContent[objectPair.key]?.isProcessing = true
+                                var object = objectPair.value
+                                guard let content = objectPair.value.rawObject.textContent else { return }
+                                //Split the string up:
+                                let subStrings = content.splitStringWithKeywords(keywords: APIService.shared.parsingKeyphrases.components(separatedBy: ","))
+                                viewModel.fileContent[objectPair.key]?.componentsCompletedProcessed = subStrings.enumerated().reduce(into: [Int: Bool](), { partialResult, nextElement in
+                                    partialResult[nextElement.offset] = false
+                                })
                                 Task {
-                                    var object = objectPair.value
                                     
-                                    guard let content = objectPair.value.rawObject.textContent else { return }
                                     do {
-                                        let summary = try await APIService.shared.summarizeDocument(content, model: APIService.shared.modelId)
-                                        objectPair.value.rawObject.createSummaryFile(summary: summary)
+                                        
+                                        print("analyzing \(subStrings.count) substrings")
+                                        var summary = APIService.shared.showPromptInSummary ? APIService.shared.assistantPrompt + "\n\n ==================== \n\n" : ""
+                                        for item in subStrings.enumerated() {
+                                            let string = item.element
+                                            let subSectionsSummary = try await APIService.shared.summarizeDocument(string, model: APIService.shared.modelId)
+                                            print("finished analyzing substring \(item.offset)")
+                                            viewModel.fileContent[objectPair.key]?.componentsCompletedProcessed?[item.offset] = true
+                                            summary += subSectionsSummary + "\n\n ==================== \n\n"
+                                        }
+                                        
+                                        objectPair.value.rawObject.createSummaryFile(startTime: startTime, summary: summary)
                                         object.summary = summary
                                         
                                     } catch {
@@ -271,7 +327,7 @@ struct HomeView: View {
                                         print(error)
                                         print(error.localizedDescription)
                                     }
-                                    object.isProcessing = false
+                                    object.componentsCompletedProcessed = nil
                                     viewModel.fileContent[objectPair.key] = object
                                 }
                                 
@@ -307,8 +363,33 @@ struct DocumentViewingScreen: View {
             Text("File Name: ").fontWeight(.semibold) + Text(object.rawObject.filename ?? "--")
             Divider()
             Text("File Content: ").fontWeight(.semibold)
+            if let componentsCompletedProcessed = object.componentsCompletedProcessed {
+                HStack {
+                    ForEach(componentsCompletedProcessed.keys.sorted(), id: \.self) { key in
+                        if let value = componentsCompletedProcessed[key] {
+                            Text(value ? "✅" : "⏳")
+                        }
+                    }
+                }
+            }
+            SheetButton { _ in
+                ScrollView {
+                    Text(object.rawObject.textContent ?? "--").textSelection(.enabled)
+                        .padding()
+                }
+            } buttonContent: {
+                Text("See original text")
+            }
+            .buttonStyle(.bordered)
+
+            
+            
             ScrollView {
-                Text(object.rawObject.textContent ?? "--")
+//                let attString = object.rawObject.attributedContent.asSingularString(delimiter: "🔵🔵🔵🔵🔵🔵🔵🔵")
+//                if !attString.string.isEmpty {
+//                    Text(AttributedString(attString)).textSelection(.enabled)
+//                }
+                
             }
             .frame(maxHeight: 500)
             Divider()
@@ -368,10 +449,12 @@ struct Prompt: Codable {
 
 class APIService: ObservableObject {
     static let shared = APIService()
+    @AppStorage("showPromptInSummary") var showPromptInSummary: Bool = true
     @AppStorage("openAIKey") var apiKey: String = ""
     @AppStorage("modelId") var modelId: String = ""
     @AppStorage("assistantPrompt") var assistantPrompt: String = ""
     @AppStorage("maxTokens") var maxTokens: Int = 200
+    @AppStorage("parsingKeyphrases") var parsingKeyphrases: String = ""
     var bearer: String { "Bearer \(apiKey)" }
     @Published var availableModels: [String] = []
     let session: URLSession
@@ -439,5 +522,57 @@ extension Sequence {
         }
 
         return values
+    }
+}
+
+extension Array where Element == NSAttributedString {
+    func asSingularString(delimiter: String = "") -> NSAttributedString {
+        let returnValue = NSMutableAttributedString()
+        
+        for item in self {
+            returnValue.append(item)
+            returnValue.append(.init(string: delimiter))
+        }
+        return returnValue
+    }
+}
+
+extension String {
+    func splitStringWithKeywords(keywords: [String]) -> [String] {
+        var splitStrings: [String] = []
+        var stringToParse = self.lowercased()
+        for item in keywords.enumerated() {
+            let keyword = item.element
+            let isLastWord = item.offset == keywords.count - 1
+            print("searching for `\(keyword)`")
+            var components = stringToParse.components(separatedBy: keyword.lowercased())
+            if components.count > 1 {
+                splitStrings.append(components.removeFirst() + keyword)
+                
+                let newStringToParse = components.joined(separator: keyword)
+                stringToParse = newStringToParse
+            } else {
+                print("\(keyword) not found")
+            }
+            if isLastWord {
+                splitStrings.append(stringToParse)
+            }
+        }
+        
+        return splitStrings
+    }
+}
+
+struct SheetButton<S: View, B: View>: View {
+    @State var showSheet = false
+    @ViewBuilder let sheetContent: (Binding<Bool>) -> S
+    @ViewBuilder let buttonContent: () -> B
+    var body: some View {
+        buttonContent().onTapGesture {
+            self.showSheet = true
+        }
+        .sheet(isPresented: $showSheet){
+            sheetContent($showSheet)
+        }
     }
 }
